@@ -1,6 +1,6 @@
 import { Pokemons } from './pokemon';
 
-export const mock_Pokemon: Pokemons[] = [
+export const POKEMONS: Pokemons[] = [
   {
     id: 1,
     name: 'Bulbizarre',
