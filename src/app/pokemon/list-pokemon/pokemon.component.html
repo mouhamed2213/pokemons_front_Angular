@@ -1,0 +1,33 @@
+<h1 class="text-center text-2xl font-bold my-6">Liste de Pokémons</h1>
+
+<div class="max-w-6xl mx-auto px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    @for (pk of pokemons; track pk.id) {
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden flex items-center p-4"
+        pkmnBorderCard="red"
+      >
+        <!-- Image -->
+        <div class="w-20 h-20 shrink-0">
+          <img src="{{ pk.picture }}" class="w-full h-full object-contain" />
+        </div>
+
+        <!-- Name -->
+        <div class="ml-4 text-md">
+          <p>Name : {{ pk.name }}</p>
+          <p class="{{ pk.hp | hpColor }}">Hp : {{ pk.hp }}</p>
+          <p>Cp : {{ pk.cp }}</p>
+          <p>
+            Famille:
+
+            @for (type of pk.types; track $index) {
+              <small class="{{ type | customTypeColor }}"> {{ type }}</small>
+            }
+          </p>
+
+          <p>{{ pk.created | date }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
