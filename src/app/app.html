@@ -1,5 +1,8 @@
 <input #number />
 <button type="button" (click)="selecPokemon(number.value)">click</button>
-<p>You choose Pokemon named : {{ pokemonName.name }}</p>
+<p pkmnBorderCard>You choose Pokemon named : {{ pokemonName }}</p>
 
+<div>
+  <p>Pokmon Card</p>
+</div>
 <router-outlet />
