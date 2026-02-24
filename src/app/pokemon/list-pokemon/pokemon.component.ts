@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { POKEMONS } from '../../mock/mock_pokemon';
 import { Pokemons } from '../../pokemon';
-import { BorderCardDirective } from '../../border-card';
+import { BorderCardDirective } from '../../shared/directives/border-card';
 import { DatePipe } from '@angular/common';
-import { CustomtypeColorPipe } from '../../pipes/type.color.pipe';
-import { HpColorPipe } from '../../pipes/hp.color.pipe';
+import { CustomtypeColorPipe } from '../../shared/pipes/type.color.pipe';
+import { HpColorPipe } from '../../shared/pipes/hp.color.pipe';
 @Component({
   selector: 'app-pokemon.component',
   imports: [BorderCardDirective, DatePipe, CustomtypeColorPipe, HpColorPipe],
