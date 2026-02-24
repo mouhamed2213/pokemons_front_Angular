@@ -14,11 +14,18 @@
 
         <!-- Name -->
         <div class="ml-4 text-md">
-          <p>{{ pk.name }}</p>
-          <p>{{ pk.hp }}</p>
-          <p>{{ pk.cp }}</p>
-          <p>{{ pk.types }}</p>
-          <p>{{ pk.created }}</p>
+          <p>Name : {{ pk.name }}</p>
+          <p class="{{ pk.hp | hpColor }}">Hp : {{ pk.hp }}</p>
+          <p>Cp : {{ pk.cp }}</p>
+          <p>
+            Famille:
+
+            @for (type of pk.types; track $index) {
+              <small class="{{ type | customTypeColor }}"> {{ type }}</small>
+            }
+          </p>
+
+          <p>{{ pk.created | date }}</p>
         </div>
       </div>
     }

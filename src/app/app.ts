@@ -3,10 +3,19 @@ import { RouterOutlet } from '@angular/router';
 import { POKEMONS } from './mock_pokemon';
 import { Pokemons } from './pokemon';
 import { BorderCardDirective } from './border-card';
+import { DatePipe } from '@angular/common';
+import { CustomtypeColorPipe } from './pipes/type.color.pipe';
+import { HpColorPipe } from './pipes/hp.color.pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, BorderCardDirective],
+  imports: [
+    RouterOutlet,
+    BorderCardDirective,
+    DatePipe,
+    CustomtypeColorPipe,
+    HpColorPipe,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
