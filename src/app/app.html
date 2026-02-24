@@ -1,8 +1,27 @@
-<input #number />
-<button type="button" (click)="selecPokemon(number.value)">click</button>
-<p pkmnBorderCard>You choose Pokemon named : {{ pokemonName }}</p>
+<h1 class="text-center text-2xl font-bold my-6">Liste de Pokémons</h1>
 
-<div>
-  <p>Pokmon Card</p>
+<div class="max-w-6xl mx-auto px-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    @for (pk of pokemons; track pk.id) {
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden flex items-center p-4"
+        pkmnBorderCard
+      >
+        <!-- Image -->
+        <div class="w-20 h-20 shrink-0">
+          <img src="{{ pk.picture }}" class="w-full h-full object-contain" />
+        </div>
+
+        <!-- Name -->
+        <div class="ml-4 text-md">
+          <p>{{ pk.name }}</p>
+          <p>{{ pk.hp }}</p>
+          <p>{{ pk.cp }}</p>
+          <p>{{ pk.types }}</p>
+        </div>
+      </div>
+    }
+  </div>
 </div>
+
 <router-outlet />
