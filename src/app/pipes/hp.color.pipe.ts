@@ -5,7 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class HpColorPipe implements PipeTransform {
   transform(hpValue: number, ...args: any[]) {
     let color: string;
-    color = hpValue >= 20 ? 'bg-green-500 text-white' : 'bg-red-500 text-white';
+    color =
+      hpValue >= 20
+        ? ' flex item-center justify-center bg-green-500 rounded-lg text-white'
+        : 'flex item-center justify-center bg-red-500 rounded-lg text-white';
     return color;
   }
 }
