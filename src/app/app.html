@@ -1,5 +1,5 @@
-<main>
-  <h1>{{ title() }}</h1>
-</main>
+<input #number />
+<button type="button" (click)="selecPokemon(number.value)">click</button>
+<p>You choose Pokemon named : {{ pokemonName.name }}</p>
 
 <router-outlet />

@@ -11,14 +11,16 @@ import { Pokemons } from './pokemon';
 })
 export class App implements OnInit {
   pokemons: Pokemons[] = POKEMONS;
+  public pokemonName!: Pokemons;
   protected readonly title = signal(`Pokemon List`);
-
   ngOnInit(): void {
     console.table(this.pokemons);
-    this.selectPokemon(this.pokemons);
   }
 
-  selectPokemon(pokemmon: Pokemons[]) {
-    console.log(`Vous avez choisi le pokemon ${pokemmon}`);
+  selecPokemon(number: string) {
+    const parsedNumber = parseInt(number);
+    const selected = this.pokemons[parsedNumber];
+    this.pokemonName = selected;
+    console.log(selected);
   }
 }
