@@ -12,6 +12,7 @@ import { BorderCardDirective } from './border-card';
 })
 export class App implements OnInit {
   constructor() {}
+
   protected readonly title = signal(`Pokemon List`);
   public pokemons: Pokemons[] = POKEMONS;
   public pokemonName!: Pokemons | undefined;
