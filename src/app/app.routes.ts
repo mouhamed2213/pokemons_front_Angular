@@ -5,5 +5,5 @@ import { DetailPokemon } from './pokemon/detail/detail.pokemon';
 export const routes: Routes = [
   { path: 'pokemons', component: PokemonComponent },
   { path: 'pokemon/:id', component: DetailPokemon },
-  { path: '', redirectTo: '/pokemon', pathMatch: 'full' },
+  { path: '', redirectTo: 'pokemon', pathMatch: 'full' },
 ];
