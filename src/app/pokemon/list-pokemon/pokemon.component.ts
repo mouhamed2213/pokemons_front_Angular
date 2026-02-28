@@ -10,6 +10,7 @@ import { pokemonService } from '../service';
 @Component({
   selector: 'app-pokemon.component',
   imports: [BorderCardDirective, DatePipe, CustomtypeColorPipe, HpColorPipe],
+  providers: [pokemonService],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.css',
 })

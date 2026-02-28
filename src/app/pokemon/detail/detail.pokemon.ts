@@ -6,6 +6,7 @@ import { pokemonService } from '../service';
 @Component({
   selector: 'app-detail.pokemon',
   imports: [CustomtypeColorPipe],
+  providers: [pokemonService],
   templateUrl: './detail.pokemon.html',
   styleUrl: './detail.pokemon.css',
 })
