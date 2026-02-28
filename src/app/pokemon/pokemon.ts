@@ -7,3 +7,8 @@ export interface Pokemons {
   types: string[];
   created: Date;
 }
+
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
