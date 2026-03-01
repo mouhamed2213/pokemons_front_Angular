@@ -25,6 +25,11 @@
           {{ pokemon.types }}
         </p>
       </div>
+
+      <div class="flex space-x-4 space-y-3 mt-3">
+        <a [routerLink]="['edit']">Update</a>
+        <a [routerLink]="">Delete</a>
+      </div>
     </div>
   </div>
 } @else {

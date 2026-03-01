@@ -10,6 +10,7 @@ import { ApiResponse } from './pokemon';
 export class PokemonService {
   private url = 'http://localhost:3000/api/pokemons';
   private http = inject(HttpClient);
+
   getPokemonList(): Observable<Pokemons[]> {
     return this.http.get<ApiResponse<Pokemons[]>>(`${this.url}`).pipe(
       tap((response) => {
@@ -29,4 +30,9 @@ export class PokemonService {
       map((pokemon) => pokemon.data),
     );
   }
+
+  // implemnt
+  // create methode
+  // updqte methode
+  // delete methode
 }

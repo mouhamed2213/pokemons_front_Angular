@@ -1,11 +1,11 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Pokemons } from '../pokemon';
 import { CustomtypeColorPipe } from '../../shared/pipes/type.color.pipe';
 import { PokemonService } from '../service';
 @Component({
   selector: 'app-detail.pokemon',
-  imports: [CustomtypeColorPipe],
+  imports: [CustomtypeColorPipe, RouterLink],
   // providers: [pokemonService],
   templateUrl: './detail.pokemon.html',
   styleUrl: './detail.pokemon.css',
@@ -17,9 +17,13 @@ export class DetailPokemon implements OnInit {
   public pokemon!: Pokemons | undefined;
 
   ngOnInit(): void {
-    this.getOnePokemon(1);
+    this.getOnePokemon();
   }
-  getOnePokemon(pokemonId: number) {
+  getOnePokemon() {
+    // use router to get the id
+
+    const pokemonId = Number(this.route.snapshot.paramMap.get('id'));
+
     return this.pokemonService.getOnePokemon(pokemonId).subscribe((pokemon) => {
       this.pokemon = pokemon;
     });
