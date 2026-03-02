@@ -1,1 +1,111 @@
-<p>edit works!</p>
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <form
+    [formGroup]="updateForm"
+    (ngSubmit)="onSubmit($event)"
+    class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md space-y-4"
+  >
+    <h2 class="text-2xl font-bold text-center mb-4">Modifier le Pokémon</h2>
+
+    <!-- Nom -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Nom</label>
+      <input
+        [formControlName]="'name'"
+        type="text"
+        class="mt-1 w-full border-gray-300 focus:ring-amber-400 focus:border-amber-400"
+      />
+
+      @if (updateForm.get("name")?.invalid && updateForm.get("name")?.touched) {
+        <p class="mt-1 text-sm text-red-500">Required Field</p>
+      }
+    </div>
+
+    <!-- HP -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">HP</label>
+      <input
+        [formControlName]="'hp'"
+        type="number"
+        class="mt-1 w-full border-gray-300 focus:ring-amber-400 focus:border-amber-400"
+      />
+      @if (updateForm.get("hp")?.invalid && updateForm.get("hp")?.touched) {
+        <p class="mt-1 text-sm text-red-500">Required Field</p>
+      }
+    </div>
+
+    <!-- CP -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">CP</label>
+      <input
+        [formControlName]="'cp'"
+        type="number"
+        class="mt-1 w-full rounded-lg border-gray-300 focus:ring-amber-400 focus:border-amber-400"
+      />
+
+      @if (updateForm.get("cp")?.invalid && updateForm.get("cp")?.touched) {
+        <p class="mt-1 text-sm text-red-500">Required Field</p>
+      }
+    </div>
+
+    <!-- Picture -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Picture url</label>
+      <input
+        [formControlName]="'picture'"
+        type="text"
+        placeholder="url"
+        class="mt-1 w-full rounded-lg border-gray-300 focus:ring-amber-400 focus:border-amber-400"
+      />
+
+      @if (
+        updateForm.get("picture")?.invalid && updateForm.get("picture")?.touched
+      ) {
+        <p class="mt-1 text-sm text-red-500">Required Field</p>
+      }
+    </div>
+
+    <!-- Types -->
+    <div formGroupName="types">
+      <label class="block text-sm font-medium text-gray-700">Types</label>
+
+      <div>
+        <label for="eau">Feu</label>
+        <input formControlName="Feu" type="checkbox" />
+      </div>
+      <div>
+        <label for="eau">Eau</label>
+        <input formControlName="Eau" type="checkbox" />
+      </div>
+      <div>
+        <label for="Fee">Fee</label>
+        <input formControlName="Fee" type="checkbox" />
+      </div>
+      <div>
+        <label for="Roue">Insect</label>
+        <input formControlName="Insect" type="checkbox" />
+      </div>
+      <div>
+        <label for="Poison">Poison</label>
+        <input formControlName="Poison" type="checkbox" />
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="flex justify-between pt-4">
+      <button
+        type="button"
+        class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 transition"
+      >
+        Annuler
+      </button>
+
+      <button
+        [disabled]="updateForm.invalid"
+        type="submit"
+        class="px-4 py-2 rounded-lg bg-amber-400 text-white hover:bg-amber-500 transition disabled:opacity-50"
+      >
+        Mettre à jour
+      </button>
+    </div>
+  </form>
+</div>
