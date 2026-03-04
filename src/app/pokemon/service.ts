@@ -1,14 +1,14 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, tap, of, map } from 'rxjs';
-import { Pokemons } from './pokemon';
+import { Pokemons, Updated } from './pokemon';
 import { ApiResponse } from './pokemon';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokemonService {
-  private url = 'http://localhost:3000/api/pokemons';
+  private url = 'http://localhost:3100/api/pokemons';
   private http = inject(HttpClient);
 
   getPokemonList(): Observable<Pokemons[]> {
@@ -22,12 +22,19 @@ export class PokemonService {
   }
 
   getOnePokemon(id: number): Observable<Pokemons> {
-    console.log('pokmeon : ', id);
     return this.http.get<ApiResponse<Pokemons>>(`${this.url}/${id}`).pipe(
       tap((response) => {
         console.log(response);
       }),
       map((pokemon) => pokemon.data),
+    );
+  }
+
+  update(id: number, pokemon: Pokemons): Observable<Updated<null>> {
+    return this.http.put<Updated<null>>(`${this.url}/${id}`, pokemon).pipe(
+      tap((pokemon) => {
+        console.log('Updated Pokemon : ');
+      }),
     );
   }
 

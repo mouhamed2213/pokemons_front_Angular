@@ -1,14 +1,20 @@
 export interface Pokemons {
-  id: number;
+  id?: number;
   name: string;
   hp: number;
   cp: number;
   picture: string;
   types: string[];
-  created: Date;
+  created?: Date;
 }
 
 export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
+export interface Updated<T> {
+  status: number;
   message: string;
   data: T;
 }
