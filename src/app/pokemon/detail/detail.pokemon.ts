@@ -16,16 +16,26 @@ export class DetailPokemon implements OnInit {
 
   public pokemon!: Pokemons | undefined;
 
+  private pokemonId!: number;
+
   ngOnInit(): void {
     this.getOnePokemon();
   }
   getOnePokemon() {
     // use router to get the id
 
-    const pokemonId = Number(this.route.snapshot.paramMap.get('id'));
+    this.pokemonId = Number(this.route.snapshot.paramMap.get('id'));
 
-    return this.pokemonService.getOnePokemon(pokemonId).subscribe((pokemon) => {
-      this.pokemon = pokemon;
+    return this.pokemonService
+      .getOnePokemon(this.pokemonId)
+      .subscribe((pokemon) => {
+        this.pokemon = pokemon;
+      });
+  }
+
+  onSubmit() {
+    this.pokemonService.delete(this.pokemonId).subscribe((response) => {
+      console.log(response);
     });
   }
 }

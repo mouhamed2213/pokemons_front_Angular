@@ -38,8 +38,17 @@ export class PokemonService {
     );
   }
 
+  // delete methode
+  delete(pokemonId: number) {
+    // add return type
+    return this.http.delete(`${this.url}/${pokemonId}`).pipe(
+      tap((deleted) => {
+        console.log(deleted);
+      }),
+    );
+  }
+
   // implemnt
   // create methode
   // updqte methode
-  // delete methode
 }
