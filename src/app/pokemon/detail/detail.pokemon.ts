@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Pokemons } from '../pokemon';
 import { CustomtypeColorPipe } from '../../shared/pipes/type.color.pipe';
 import { PokemonService } from '../service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-detail.pokemon',
   imports: [CustomtypeColorPipe, RouterLink],
@@ -17,6 +18,8 @@ export class DetailPokemon implements OnInit {
   public pokemon!: Pokemons | undefined;
 
   private pokemonId!: number;
+
+  public router = inject(Router);
 
   ngOnInit(): void {
     this.getOnePokemon();
@@ -34,8 +37,20 @@ export class DetailPokemon implements OnInit {
   }
 
   onSubmit() {
-    this.pokemonService.delete(this.pokemonId).subscribe((response) => {
-      console.log(response);
-    });
+    if (confirm('Confirmer la suppression ?')) {
+      this.pokemonService.delete(this.pokemonId).subscribe({
+        next: (value) => {
+          console.log('Deleted ', value);
+          alert('Pokemon deleted');
+          this.router.navigate(['/pokemons']);
+        },
+        error(err) {
+          console.error('Cannot deleted', err);
+        },
+        complete() {
+          console.log('End');
+        },
+      });
+    }
   }
 }
