@@ -31,24 +31,15 @@ export class PokemonService {
   }
 
   update(id: number, pokemon: Pokemons): Observable<Updated<null>> {
-    return this.http.put<Updated<null>>(`${this.url}/${id}`, pokemon).pipe(
-      tap((pokemon) => {
-        console.log('Updated Pokemon : ');
-      }),
-    );
+    return this.http.put<Updated<null>>(`${this.url}/${id}`, pokemon);
   }
 
   // delete methode
   delete(pokemonId: number) {
     // add return type
-    return this.http.delete(`${this.url}/${pokemonId}`).pipe(
-      tap((deleted) => {
-        console.log(deleted);
-      }),
-    );
+    return this.http.delete(`${this.url}/${pokemonId}`);
   }
 
   // implemnt
   // create methode
-  // updqte methode
 }

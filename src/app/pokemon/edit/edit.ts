@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormControl,
@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { PokemonService } from '../service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemons } from '../pokemon';
 @Component({
   selector: 'app-edit',
@@ -23,6 +23,7 @@ export class EditComponent implements OnInit {
   // variable to store pokemon
   private pokemon!: Pokemons;
 
+  private router = inject(Router);
   // update form
   updateForm = new FormGroup({
     name: new FormControl('test', [Validators.required]),
@@ -64,11 +65,18 @@ export class EditComponent implements OnInit {
     const updatePokemon = { ...pokemon, types: typeArray };
     console.log(updatePokemon);
 
-    this.pokmemonService
-      .update(this.pokemonId, updatePokemon)
-      .subscribe((data) => {
-        console.log('Updateed', data);
-      });
+    this.pokmemonService.update(this.pokemonId, updatePokemon).subscribe({
+      next: (value) => {
+        console.log('Update ', value);
+        alert('Updated');
+        this.router.navigateByUrl(`/pokemon/${this.pokemonId}`);
+      },
+
+      error: (error) => {
+        alert('Update Error');
+        console.error('Cannot update pookmeon ', error);
+      },
+    });
   }
 
   // prefield pokemon form
